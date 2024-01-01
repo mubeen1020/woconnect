@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+		
+		<record id="view_wp_odoo_backend_tree" model="ir.ui.view">
+			<field name="name">wordpress.configure.tree</field>
+			<field name="model">wordpress.configure</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Backend">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_wp_odoo_backend_form" model="ir.ui.view">
+			<field name="name">wordpress.configure.form</field>
+			<field name="model">wordpress.configure</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Backend">
+					<header>
+						<button string="Check Connection" class="oe_highlight"
+							type="object" name="test_connection" />
+					</header>
+					<sheet>
+						<!-- <label string="Name" /> -->
+						<h1>
+							<field name="name" required="1" />
+						</h1>
+						<separator string="Configuration" colspan="4" />
+						<group col="2">
+							<field name="location" required="1" />
+							<field name="consumer_key" required="1" password="True"/>
+							<field name="consumer_secret" required="1" password="True"/>
+							<field name="version" required="1" />
+							<field name="verify_ssl" />
+							<field name="start_record_num" />
+							<field name="end_record_num" />
+							
+							<field name="login_wp_username" password="True"/>
+							<field name="application_password_password" password="True"/>
+
+						</group>
+							<p>For Products :- 1 record means 1 product per page</p>
+							<p>For Customers :- 1 record means 1 customer per page</p>
+							<p>For Sale Orders :- 1 record means 100 sale order per page</p>
+							
+							
+
+						<notebook colspan="4">
+							<page string="Import Data">
+
+								<group>
+									<label class="oe_inline" for="import_customer" string="Import Customer"/>
+									<button class="oe_highlight" name="import_customer" string="
+									Import Customer" type="object"/>
+								</group>
+								<group>
+									<label class="oe_inline" for="import_product" string="Import Product"/>
+									<button class="oe_highlight" name="import_product" string="
+									Import Product" type="object"/>
+								</group>
+								<group>
+									<label class="oe_inline" for="import_sale_orders" string="Import Sale Order"/>
+									<button class="oe_highlight" name="import_sale_orders" string="Import Sale Order" type="object"/>
+								</group>
+							</page>
+							<page string="Export Data">
+								<group>
+									<label string="Export Product Tags" for="export_product_tags" class="oe_inline" />
+									<button name="export_product_tags" type="object" class="oe_highlight"
+										string="Export Product Tags" />
+								</group>
+								<group>
+									<label string="Export Product Attributes" for="export_attributes" class="oe_inline" />
+									<button name="export_attributes" type="object" class="oe_highlight"
+										string="Export Product Attributes" />
+								</group>
+								<group>
+									<label string="Export Product Categories" for="export_categories" class="oe_inline" />
+									<button name="export_categories" type="object" class="oe_highlight"
+										string="Export Product Categories" />
+								</group>
+								<group>
+									<label string="Export Products" for="export_products" class="oe_inline" />
+									<button name="export_products" type="object" class="oe_highlight"
+										string="Export Products" />
+								</group>
+								
+								<group>
+		                           <label string="Export Customers" for="export_customers" class="oe_inline" />
+		                           <button name="export_customers" type="object" class="oe_highlight" string="Export Customers" />
+		                        </group>
+		                        <group>
+		                           <label string="Export Taxes" for="export_taxes" class="oe_inline" />
+		                           <button name="export_taxes" type="object" class="oe_highlight" string="Export Taxes" />
+		                        </group>
+		                        <group>
+		                           <label string="Export Sales Orders" for="export_sale_order" class="oe_inline" />
+		                           <button name="export_sale_order" type="object" class="oe_highlight" string="Export Sales Orders" />
+		                        </group>
+		                        <group>
+		                           <label string="Export Invoice Refund" for="export_invoices_refund" class="oe_inline" />
+		                           <button name="export_invoices_refund" type="object" class="oe_highlight" string="Export Invoice Refund" />
+		                        </group>
+							</page>
+							<page string="Mapping">
+								<group>
+									<label string="Product Tags" for ="map_product_tags" class="oe_inline"/>
+									<div>
+										<button name="map_product_tags" type="object" class="oe_highlight"
+										string="Add" style="margin-right:12%; margin-left:2%;"/>
+										<button name="unmap_product_tags" type="object" class="oe_highlight"
+										string="Remove" />
+									</div>
+									
+								</group>
+								<group>
+									<label string="Product Attributes" for="map_attributes" class="oe_inline" />
+									<div>
+									<button name="map_attributes" type="object" class="oe_highlight"
+										string="Add" style="margin-right:12%; margin-left:2%;"/>
+									<button name="unmap_attributes" type="object" class="oe_highlight"
+										string="Remove" />
+									</div>
+								</group>
+								<group>
+									<label string="Product Categories" for="map_categories" class="oe_inline" />
+									<div>
+									<button name="map_categories" type="object" class="oe_highlight"
+										string="Add" style="margin-right:12%; margin-left:2%;"/>
+									<button name="unmap_categories" type="object" class="oe_highlight"
+										string="Remove" />
+									</div>
+								</group>
+								<group>
+									<label string="Taxes" for="map_taxes" class="oe_inline" />
+									<div>
+									<button name="map_taxes" type="object" class="oe_highlight"
+										string="Add" style="margin-right:12%; margin-left:2%;"/>
+									<button name="unmap_taxes" type="object" class="oe_highlight"
+										string="Remove" />
+									</div>
+								</group>
+								<group>
+									<label string="Products" for="map_products" class="oe_inline" />
+									<div>
+									<button name="map_products" type="object" class="oe_highlight"
+										string="Add" style="margin-right:12%; margin-left:2%;"/>
+									<button name="unmap_products" type="object" class="oe_highlight"
+										string="Remove" />
+									</div>
+								</group>
+								<group>
+		                           	<label string="Customers" for="map_customers" class="oe_inline" />
+		                           	<div>
+		                           	<button name="map_customers" type="object" class="oe_highlight"
+										string="Add" style="margin-right:12%; margin-left:2%;"/>
+									<button name="unmap_customers" type="object" class="oe_highlight"
+										string="Remove" />
+									</div>
+		                        </group>
+		                        <group>
+		                           	<label string="Sales Orders" for="map_sale_order" class="oe_inline" />
+		                           	<div>
+		                           	<button name="map_sale_order" type="object" class="oe_highlight"
+										string="Add" style="margin-right:12%; margin-left:2%;"/>
+									<button name="unmap_sale_order" type="object" class="oe_highlight"
+										string="Remove" />
+									</div>
+		                        </group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="wp_odoo_site_action">
+			<field name="name">Wordpress Connection</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wordpress.configure</field>
+<!--			<field name="view_type">form</field>-->
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_site_action_form">
+			<field name="act_window_id" ref="wp_odoo_site_action" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wp_odoo_backend_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_site_action_tree">
+			<field name="act_window_id" ref="wp_odoo_site_action" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_wp_odoo_backend_tree" />
+		</record>
+
+		 <!-- <menuitem id="menu_point_root" name="WP ODOO Bridge" load_xmlid="True"
+        groups="base.group_user" sequence="6"/> -->
+		
+		 <menuitem id="menu_point_root" name="WP ODOO Bridge"  />	<!-- load_xmlid="True" groups="group_wp_odoo,group_wp_odoo_user" -->	
+					
+		<menuitem  id="menu_wp_odoo_id" name="WordPress Site" parent="menu_point_root" sequence="1" /><!-- groups="group_wp_odoo_user" -->
+		<menuitem  id="wp_odoo_id0" name="WP Site" parent="menu_wp_odoo_id" action="wp_odoo_site_action" /><!-- groups="group_wp_odoo_user" -->
+
+		<menuitem  id="menu_wp_odoo_mapping_id" name="Mapping" parent="menu_point_root" sequence="3" /> <!-- groups="group_wp_odoo_user" -->
+		
+				
+	</data>
+</odoo>
+		

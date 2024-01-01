@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+		<record id="view_wp_odoo_product_tree" model="ir.ui.view">
+			<field name="name">wordpress.odoo.product.template.tree</field>
+			<field name="model">wordpress.odoo.product.template</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="product_mapping">
+					<field name="product_id" />
+					<field name="backend_id" />
+					<field name="woo_id" />
+					<field name="image_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_wp_odoo_product_form" model="ir.ui.view">
+			<field name="name">wordpress.odoo.product.template.form</field>
+			<field name="model">wordpress.odoo.product.template</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="product_mapping">
+					<h1>
+						<field name="product_id" />
+					</h1>
+					<group col="4" >
+						<group string="Mapping" name="Mapping">
+							<field name="backend_id" />
+							<field name="woo_id" />
+							<field name="image_id" />
+						</group>
+						<group>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="wp_odoo_product_search">
+            <field name="name">wordpress.odoo.product.template.search</field>
+            <field name="model">wordpress.odoo.product.template</field>
+            <field name="arch" type="xml">
+                <search>
+                	<field name="product_id" />
+                    <field name="backend_id"/>
+                    <filter string="Backend" name="backend_id"/>
+                    <filter string="Product" name="product_id"/>
+                    <group expand="0" string="Group By">
+                        <filter name='backend_filter' string="Backend" icon="terp-go-home" domain="[]"  context="{'group_by':'backend_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<record model="ir.actions.act_window" id="wp_odoo_product_action">
+			<field name="name">Product Mapping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wordpress.odoo.product.template</field>
+<!--			<field name="view_type">form</field>-->
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="wp_odoo_product_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_product_action_form">
+			<field name="act_window_id" ref="wp_odoo_product_action" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wp_odoo_product_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_product_action_tree">
+			<field name="act_window_id" ref="wp_odoo_product_action" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_wp_odoo_product_tree" />
+		</record>
+
+		<menuitem  id="wp_odoo_product_id" name="Product Template Mapping" parent="menu_wp_odoo_mapping_id" action="wp_odoo_product_action"/>
+
+				
+		<record id="view_wp_odoo_product_product_tree" model="ir.ui.view">
+			<field name="name">wordpress.odoo.product.product.tree</field>
+			<field name="model">wordpress.odoo.product.product</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="product_mapping" create="false" edit="false">
+<!--				<tree string="product_mapping">-->
+					<field name="product_id" />
+					<field name="backend_id" />
+					<field name="woo_id" />
+					<field name="image_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_wp_odoo_product_product_form" model="ir.ui.view">
+			<field name="name">wordpress.odoo.product.product.form</field>
+			<field name="model">wordpress.odoo.product.product</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="product_mapping">
+					<h1>
+						<field name="product_id" />
+					</h1>
+					<group col="4" >
+						<group string="Mapping" name="Mapping">
+							<field name="backend_id" />
+							<field name="woo_id" />
+							<field name="image_id" />
+						</group>
+						<group>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="wp_odoo_product_product_search">
+            <field name="name">wordpress.odoo.product.product.search</field>
+            <field name="model">wordpress.odoo.product.product</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="product_id" />
+                    <field name="backend_id"/>
+                    <filter string="Backend" name="backend_id"/>
+                    <filter string="Product" name="product_id"/>
+                    <group expand="0" string="Group By">
+                        <filter name="back_filter" string="Backend" icon="terp-go-home" domain="[]"  context="{'group_by':'backend_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+		<record model="ir.actions.act_window" id="wp_odoo_product_product_action">
+			<field name="name">Product Product Mapping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wordpress.odoo.product.product</field>
+<!--			<field name="view_type">form</field>-->
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_product_product_action_form">
+			<field name="act_window_id" ref="wp_odoo_product_product_action" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wp_odoo_product_product_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_product_product_action_tree">
+			<field name="act_window_id" ref="wp_odoo_product_product_action" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_wp_odoo_product_product_tree" />
+		</record>
+
+		<menuitem  id="wp_odoo_product_product_id" name="Product Product Mapping" parent="menu_wp_odoo_mapping_id" action="wp_odoo_product_product_action"/>
+	</data>
+</odoo>
+		

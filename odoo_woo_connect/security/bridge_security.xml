@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+	<record model="ir.module.category" id="module_wp_odoo_bridge_category">
+		<field name="name">WP ODOO Bridge</field>
+		<field name="description">Wp Odoo Bridge Application</field>
+		<field name="sequence">20</field>
+    </record>
+	
+	<record id="group_wp_odoo_user" model="res.groups">
+		<field name="name">User</field>
+		<field name="comment">User will have an read access to the wp odoo bridge.</field>
+		<field name="category_id" ref="module_wp_odoo_bridge_category"/>
+		<!-- <field name="users_rights" eval="[(4, ref('base.user_root'))]"/> -->
+
+	</record>
+	
+    <record id="group_wp_odoo" model="res.groups">
+        <field name="name">Manager</field>
+		<field name="comment">Full Access on Wp Odoo Bridge</field>
+		<field name="category_id" ref="module_wp_odoo_bridge_category"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		 <field name="implied_ids" eval="[(4, ref('group_wp_odoo_user'))]"/>
+    </record>
+</data>
+</odoo>

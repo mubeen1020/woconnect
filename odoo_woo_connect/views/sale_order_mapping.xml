@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+		
+		<record id="view_wp_odoo_sale_order_tree" model="ir.ui.view">
+			<field name="name">wordpress.odoo.sale.order.tree</field>
+			<field name="model">wordpress.odoo.sale.order</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="sale_order_mapping" >
+					<field name="order_id" />
+					<field name="backend_id"/>
+					<field name="woo_id"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_wp_odoo_sale_order_form" model="ir.ui.view">
+			<field name="name">wordpress.odoo.sale.order.form</field>
+			<field name="model">wordpress.odoo.sale.order</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="sale_order_mapping">
+					<sheet>
+						<h1>
+							<field name="order_id" />
+						</h1>
+						<group col="2" name="Mapping">
+							<field name="backend_id" />
+							<field name="woo_id"/>
+						</group>
+						
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="wp_odoo_sales_order_search">
+            <field name="name">wordpress.odoo.sale.order.search</field>
+            <field name="model">wordpress.odoo.sale.order</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="backend_id"/>
+                    <field name="order_id"/>
+                    <filter string="By Order Name" domain="[]" name="order_id"/>
+                    <filter string="Backend" domain="[]" name="backend_id"/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter name="filter_two" string="Backend" icon="terp-go-home" domain="[]"  context="{'group_by':'backend_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<record model="ir.actions.act_window" id="wp_odoo_sale_order_action">
+			<field name="name">Sale Order Mapping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wordpress.odoo.sale.order</field>
+<!--			<field name="view_type">form</field>-->
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_sale_order_action_form">
+			<field name="act_window_id" ref="wp_odoo_sale_order_action" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wp_odoo_sale_order_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_sale_order_action_tree">
+			<field name="act_window_id" ref="wp_odoo_sale_order_action" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_wp_odoo_sale_order_tree" />
+		</record>
+
+		<menuitem  id="wp_odoo_sale_order_id" name="Sale Order Mapping" parent="menu_wp_odoo_mapping_id" action="wp_odoo_sale_order_action"/>				
+	</data>
+</odoo>
+		

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model="ir.ui.view" id="wp_customer_view">
+            <field name="name">res.partner.wp.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+				<field name="email" string="Email"  required="True" />
+
+            	<xpath expr="//sheet" position="before">
+            		<header>
+                		<button name="sync_customer" string="Sync" type="object" class="oe_highlight"/>
+                	</header>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="replace">
+                    <field name="city" placeholder="City" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="replace">
+                    <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='title']" position="replace">
+                </xpath>
+            	<xpath expr="//group" position="before">
+                    <group>
+                        <group name="backend" col="2">
+                            <field name="title"/>
+                        	<field name="first_name"/>
+                        	<field name="last_name"/>
+                            <field name="backend_id"/>
+                        </group>
+                        <group>
+                        	<field name="username"/>
+                        	<field name="company"/>
+                        </group>
+                    </group>
+                </xpath>
+
+            	<xpath expr="//page[@name='internal_notes']" position="before">
+            		<page string="Wordpress" col="4" name="wordpress">
+                        <group name="shipping_address" string="Shipping Address">
+                            <field name="shipping_ids" nolabel="1" context="{
+                            	'form_view_ref': 'res.partner.shipping.address.shipping_address_form_view'}">
+	                            <tree string="shipping_id">
+									<field name="ship_first_name" />
+									<field name="ship_last_name" />
+									<field name="ship_phone" />
+									<field name="ship_address1" />
+									<field name="ship_address2" />
+									<field name="ship_city" />
+									<field name="ship_state" />
+									<field name="ship_country" />
+									<field name="ship_zip" />
+                              	</tree>
+                            </field>	                        
+                    	</group>
+	                </page>
+	            </xpath>
+            </field>
+        </record>
+
+
+        <record id="shipping_address_form_view" model="ir.ui.view">
+			<field name="name">shipping.address.form</field>
+			<field name="model">res.partner.shipping.address</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Shipping">
+					<group>
+						<group>
+							<field name="ship_first_name" />
+							<field name="default" />
+							<field name="ship_address1" />
+							<field name="ship_city" />
+							<field name="ship_country" />
+						</group>
+						<group>
+							<field name="ship_last_name" />
+							<field name="ship_phone" />
+							<field name="ship_address2" />
+							<field name="ship_state" />
+							<field name="ship_zip" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+    </data>
+</odoo>

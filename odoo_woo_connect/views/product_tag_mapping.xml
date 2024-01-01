@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>	
+		<record id="view_wp_odoo_tag_tree" model="ir.ui.view">
+			<field name="name">wordpress.odoo.product.tag.tree</field>
+			<field name="model">wordpress.odoo.product.tag</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="tag_mapping" >
+					<field name="product_tag_id" />
+					<field name="backend_id"/>
+					<field name="woo_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_wp_odoo_tag_form" model="ir.ui.view">
+			<field name="name">wordpress.odoo.product.tag.form</field>
+			<field name="model">wordpress.odoo.product.tag</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="tag_mapping">
+					<sheet>
+						<h1>
+							<field name="product_tag_id" />
+						</h1>
+						<group col="2" name="Mapping">
+							<field name="backend_id"/>
+							<field name="woo_id"/>
+						</group>
+						
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="wp_odoo_tag_search">
+            <field name="name">wordpress.odoo.product.tag.search</field>
+            <field name="model">wordpress.odoo.product.tag</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="backend_id"/>
+                    <field name="product_tag_id"/>
+                    <filter string="Tag" name="product_tag_id" domain="[]"/>
+                    <filter string="Backend" name="backend_id" domain="[]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="group_filter" string="Backend" icon="terp-go-home" domain="[]"  context="{'group_by':'backend_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<record model="ir.actions.act_window" id="wp_odoo_tag_action">
+			<field name="name">Product Tag Mapping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wordpress.odoo.product.tag</field>
+<!--			<field name="view_type">form</field>-->
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_tag_action_form">
+			<field name="act_window_id" ref="wp_odoo_tag_action" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wp_odoo_tag_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_tag_action_tree">
+			<field name="act_window_id" ref="wp_odoo_tag_action" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_wp_odoo_tag_tree" />
+		</record>
+
+		<menuitem  id="wp_odoo_tag_id" name="Tag Mapping" parent="menu_wp_odoo_mapping_id" action="wp_odoo_tag_action"/>
+
+		<record id="product_tag_view_tree" model="ir.ui.view">
+			<field name="name">product.product.tag.tree</field>
+			<field name="model">product.product.tag</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Tags" editable="top">
+                	<field name="sequence" widget="handle"/>
+					<button name="sync_tag" string="Sync" type="object" class="oe_highlight"/>
+					<field name="name" />
+					<field name="slug"/>
+					<field name="desc"/>
+					<field name="backend_id"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="product_tag_view_form" model="ir.ui.view">
+            <field name="name">product.product.tag.form</field>
+            <field name="model">product.product.tag</field>
+            <field name="arch" type="xml">
+                <form string="Product Tag">
+                    <group>
+                        <group name="main_fields">
+                            <!-- <label for="name" string="Tag Name"/> -->
+                            <field name="name" nolabel="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="slug"/>
+                        <field name="desc"/>
+						<field name="backend_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+		<record id="tag_action" model="ir.actions.act_window">
+            <field name="name">Product Tags</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product.tag</field>
+            <field name="view_mode">tree</field>
+<!--            <field name="view_type">form</field>-->
+        </record>
+		
+		<menuitem id="menu_tags_action" name="Product Tags" action="tag_action" 
+        parent="stock.menu_product_in_config_stock" sequence="6" groups="product.group_product_variant"/>
+
+        <menuitem id="menu_tags_action1" name="Product Tags" action="tag_action" 
+        	parent="sale.prod_config_main" sequence="4" groups="product.group_product_variant"/>
+	</data>
+</odoo>
+		

@@ -1,0 +1,76 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+user_wordpress_configure,WP Configure user,model_wordpress_configure,group_wp_odoo_user,1,0,0,0
+user_res_partner,WP Customer user,model_res_partner,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_res_partner,WP Customer Mapping user,model_wordpress_odoo_res_partner,group_wp_odoo_user,1,0,0,0
+user_product_product_tag,WP Product Tags user,model_product_product_tag,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_product_tag,WP Product Tag Mapping user,model_wordpress_odoo_product_tag,group_wp_odoo_user,1,0,0,0
+user_product_multi_image,WP Product Multi Image user,model_product_multi_image,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_product_image,WP odoo Image user,model_wordpress_odoo_product_image,group_wp_odoo_user,1,0,0,0
+user_product_template,WP Product Template user,model_product_template,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_product_template,WP Product Mapping user,model_wordpress_odoo_product_template,group_wp_odoo_user,1,0,0,0
+user_product_product,WP ProductProduct user,model_product_product,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_product_product,WP ProductProduct Mapping user,model_wordpress_odoo_product_product,group_wp_odoo_user,1,0,0,0
+user_product_attribute,WP Product Attribute user,model_product_attribute,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_attribute,WP Product Attribute Mapping user,model_wordpress_odoo_attribute,group_wp_odoo_user,1,0,0,0
+user_product_attribute_value,WP Product Attribute Value user,model_product_attribute_value,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_attribute_value,WP Product Attribute Value Mapping user,model_wordpress_odoo_attribute_value,group_wp_odoo_user,1,0,0,0
+user_product_category,WP Product Category user,model_product_category,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_category,WP Product Category Mapping user,model_wordpress_odoo_category,group_wp_odoo_user,1,0,0,00
+
+user_sale_order,WP Sales Order user,model_sale_order,group_wp_odoo_user,1,0,0,0
+user_wordpress_odoo_sale_order,WP Sales Order Mapping user,model_wordpress_odoo_sale_order,group_wp_odoo_user,1,0,0,0
+
+user_res_partner_shipping_address,WP Shipping Address Mapping user,model_res_partner_shipping_address,group_wp_odoo_user,1,0,0,0
+,,,,,,,
+manager_wordpress_configure,WP Configure manager,model_wordpress_configure,group_wp_odoo,1,1,1,1
+manager_res_partner,WP Customer manager,model_res_partner,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_res_partner,WP Customer Mapping manager,model_wordpress_odoo_res_partner,group_wp_odoo,1,1,1,1
+manager_product_product_tag,WP Product Tags manager,model_product_product_tag,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_product_tag,WP Product Tag Mapping manager,model_wordpress_odoo_product_tag,group_wp_odoo,1,1,1,1
+manager_product_multi_image,WP Product Multi Image manager,model_product_multi_image,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_product_image,WP odoo Image user,model_wordpress_odoo_product_image,group_wp_odoo,1,1,1,1
+manager_product_template,WP Product Template manager,model_product_template,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_product_template,WP Product Mapping manager,model_wordpress_odoo_product_template,group_wp_odoo,1,1,1,1
+manager_product_product,WP ProductProduct manager,model_product_product,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_product_product,WP ProductProduct Mapping manager,model_wordpress_odoo_product_product,group_wp_odoo,1,1,1,1
+
+manager_product_attribute,WP Product Attribute manager,model_product_attribute,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_attribute,WP Product Attribute Mapping manager,model_wordpress_odoo_attribute,group_wp_odoo,1,1,1,1
+manager_product_attribute_value,WP Product Attribute Value manager,model_product_attribute_value,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_attribute_value,WP Product Attribute Value Mapping manager,model_wordpress_odoo_attribute_value,group_wp_odoo,1,1,1,1
+manager_product_category,WP Product Category manager,model_product_category,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_category,WP Product Category Mapping manager,model_wordpress_odoo_category,group_wp_odoo,1,1,1,1
+
+manager_res_partner_shipping_address,WP Shipping Address Mapping manager,model_res_partner_shipping_address,group_wp_odoo,1,1,1,1
+manager_sale_order,WP Sales Order manager,model_sale_order,group_wp_odoo,1,1,1,1
+manager_wordpress_odoo_sale_order,WP Sales Order Mapping manager,model_wordpress_odoo_sale_order,group_wp_odoo,1,1,1,1
+
+
+
+access_wordpress_odoo_tax,access_wordpress_odoo_tax,model_wordpress_odoo_tax,base.group_user,1,1,1,1
+access_wordpress_configure,access_wordpress_configure,model_wordpress_configure,base.group_user,1,1,1,1
+access_res_partner,access_res_partner,model_res_partner,base.group_user,1,1,1,1
+access_wordpress_odoo_res_partner,access_wordpress_odoo_res_partner,model_wordpress_odoo_res_partner,base.group_user,1,1,1,1
+access_product_product_tag,access_product_product_tag,model_product_product_tag,base.group_user,1,1,1,1
+access_wordpress_odoo_product_tag,access_wordpress_odoo_product_tag,model_wordpress_odoo_product_tag,base.group_user,1,1,1,1
+access_product_multi_image,access_product_multi_image,model_product_multi_image,base.group_user,1,1,1,1
+access_wordpress_odoo_product_image,access_wordpress_odoo_product_image,model_wordpress_odoo_product_image,base.group_user,1,1,1,1
+access_product_template,access_product_template,model_product_template,base.group_user,1,1,1,1
+access_wordpress_odoo_product_template,access_wordpress_odoo_product_template,model_wordpress_odoo_product_template,base.group_user,1,1,1,1
+access_product_product,access_product_product,model_product_product,base.group_user,1,1,1,1
+access_wordpress_odoo_product_product,access_wordpress_odoo_product_product,model_wordpress_odoo_product_product,base.group_user,1,1,1,1
+
+access_product_attribute,access_product_attribute,model_product_attribute,base.group_user,1,1,1,1
+access_wordpress_odoo_attribute,access_wordpress_odoo_attribute,model_wordpress_odoo_attribute,base.group_user,1,1,1,1
+access_product_attribute_value,access_product_attribute_value,model_product_attribute_value,base.group_user,1,1,1,1
+access_wordpress_odoo_attribute_value,access_wordpress_odoo_attribute_value,model_wordpress_odoo_attribute_value,base.group_user,1,1,1,1
+access_product_category,access_product_category,model_product_category,base.group_user,1,1,1,1
+access_wordpress_odoo_category,access_wordpress_odoo_category,model_wordpress_odoo_category,base.group_user,1,1,1,1
+access_res_partner_shipping_address,access_res_partner_shipping_address,model_res_partner_shipping_address,base.group_user,1,1,1,1
+access_wordpress_odoo_sale_order,access_wordpress_odoo_sale_order,model_wordpress_odoo_sale_order,base.group_user,1,1,1,1
+
+manager_wordpress_jobs,WP import export manager,model_wordpress_jobs,group_wp_odoo,1,1,1,1
+
+access_wordpress_odoo_account_invoice,access_wordpress_odoo_account_invoice,model_wordpress_odoo_account_invoice,base.group_user,1,1,1,1
+access_message_wizard,message.wizard,model_message_wizard,base.group_user,1,1,1,1
+access_wordpress_odoo_multi_product_image,access_wordpress_odoo_multi_product_image,model_wordpress_odoo_multi_product_image,base.group_user,1,1,1,1

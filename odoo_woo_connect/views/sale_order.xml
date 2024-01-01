@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model="ir.ui.view" id="wp_sale_order_view">
+            <field name="name">sale.order.wp.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='state']" position="before">
+						<button name="sync_sale_order" string="Sync" type="object" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="attrs">{ 'readonly':[('state', 'in', ('sale','done','cancel'))]}</attribute>
+                </xpath>
+            	<xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="backend_id" required="True"/>
+                </xpath>
+
+
+                <!-- fields for putting Wordpress payment info  by pravin -->
+                <xpath expr="//form/sheet/notebook/page[@name='other_information']" position="before">
+                    <page string="WP Info" name="WP Info">
+                    
+                        <group name="Wordpress" string="Wordpress">
+                            <field name="wp_payment_method"/>
+                            <field name="wp_payment_status"/>
+                            <field name="wp_payment_transaction_id"/>
+                            <field name="wp_payment_date_paid"/>
+                            <field name="wp_sale_order_number"/>
+    
+                                        
+                            <!-- <field name="reference" readonly="1" attrs="{'invisible': [('reference', '=', False)]}"/> -->
+                        </group>
+                    </page>
+                </xpath>
+       
+            </field>
+        </record>      
+
+    </data>
+</odoo>

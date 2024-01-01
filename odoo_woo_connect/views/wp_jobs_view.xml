@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+		
+		<record id="view_wp_odoo_job_backend_tree" model="ir.ui.view">
+			<field name="name">wordpress.jobs.tree</field>
+			<field name="model">wordpress.jobs</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Backend">
+					<field name="name" />
+					<field name="state" />
+					
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_wp_odoo_job_backend_form" model="ir.ui.view">
+			<field name="name">wordpress.jobs.form</field>
+			<field name="model">wordpress.jobs</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Backend">
+					<header>
+						<button string="Check Connection" class="oe_highlight"
+							type="object" name="test_connection" />
+					</header>
+					<sheet>
+						<label string="Name" />
+						<h1>
+							<field name="name" required="1" />
+						</h1>
+						<separator string="Configuration" colspan="4" />
+						<group col="2">
+							<field name="location" required="1" />
+							<field name="consumer_key" required="1" />
+							<field name="consumer_secret" required="1" />
+							<field name="version" required="1" />
+							<field name="verify_ssl" />
+						</group>
+						<notebook colspan="4">
+							<page string="Export Data">
+								<group>
+									<label string="Export Products" class="oe_inline" />
+									<button name="export_products" type="object" class="oe_highlight"
+										string="Export Products" />
+								</group>
+								<group>
+									<label string="Export Product Categories" class="oe_inline" />
+									<button name="export_categories" type="object" class="oe_highlight"
+										string="Export Categories" />
+								</group>
+								<group>
+		                           <label string="Export Customers" class="oe_inline" />
+		                           <button name="export_customers" type="object" class="oe_highlight" string="Export Customers" />
+		                        </group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="wp_odoo_job_site_action">
+			<field name="name">Wordpress Connection</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wordpress.jobs</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_job_site_action_form">
+			<field name="act_window_id" ref="wp_odoo_job_site_action" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wp_odoo_job_backend_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="wp_odoo_job_site_action_tree">
+			<field name="act_window_id" ref="wp_odoo_job_site_action" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_wp_odoo_job_backend_tree" />
+		</record>
+
+		
+		<menuitem  id="menu_wp_odoo_id2" name="Jobs" parent="wp_odoo_parent_menu" sequence="1"/>
+			<menuitem  id="wp_odoo_job_id" name="Job Details" parent="menu_wp_odoo_id2" action="wp_odoo_job_site_action"/>
+				
+		</data>
+</odoo>
+		

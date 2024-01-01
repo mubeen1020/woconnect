@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="wp_odoo_product_template_form_view" model="ir.ui.view">
+            <field name="name">product.normal.woo.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button name="sync_product" string="Sync" type="object" class="oe_highlight"/>
+                </header>
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="backend_id" required="1"/>
+                    <field name='tag_ids' widget="many2many_tags"/>
+                    <field name="regular_price" />
+                    <field name="sale_price" />
+<!--                    <field name="list_price" readonly="1" />-->
+                    <field name="list_price"/>
+                </xpath>
+
+                <xpath expr="//field[@name='list_price']" position="replace">
+                </xpath>
+<!--                <xpath expr="//label[@for='list_price']" position="replace">-->
+<!--                    <label for="list_price" invisible="1"/>-->
+<!--                </xpath>-->
+                <xpath expr="//page[@name='general_information']/group" position="after">
+                    <group>
+                        <field name="description"/>
+                        <field name="short_description"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page string="Wordpress">
+                        <!--  <group>
+                             <group name="classification_categories" string="WP Categories">
+                                 <field name="categ_ids" nolabel="1" colspan="2" widget="many2many_tags" domain="[('backend_id','!=',None)]">
+                                     <tree string="categ_ids">
+                                         <field name="name" />
+                                         <field name="backend_id" widget="many2many_tags"/>
+                                         <field name="parent_id" />
+                                         <field name="type" />
+                                     </tree>
+                                 </field>
+                             </group>
+                         </group> -->
+                        <group>
+                            <group string="Dimensions" attrs="{'invisible':[('type','=','service')]}">
+                                <!-- <field name="dimention_unit" /> -->
+                                <field name="website_size_x" />
+                                <field name="website_size_y" />
+                                <field name="website_size_z" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <!-- <xpath expr="//form/sheet/field[@name='image_medium']" position="after">
+                   <img t-if="image_medium" t-att-src="image_data_uri(image_medium)" alt="Product"/>
+                </xpath>
+ -->
+            </field>
+        </record>
+
+        <record id="wp_odoo_product_category_form_view" model="ir.ui.view">
+            <field name="name">product.category.woo.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view" />
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="sync_category" string="Sync" type="object" class="oe_highlight"/>
+                    </header>
+                </xpath>
+                <xpath expr="//sheet/div" position="after">
+                    <field name="image" widget='image' class="oe_avatar oe_right"/>
+                </xpath>
+                <xpath expr="//group" position="before">
+                    <group>
+                        <group name="backend" col="2">
+                            <field name="backend_id"/>
+                        </group>
+                        <group>
+                            <field name="slug"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="wp_odoo_product_attr_tree_view" model="ir.ui.view">
+            <field name="name">product.attribute.woo.tree</field>
+            <field name="model">product.attribute</field>
+            <field name="inherit_id" ref="product.attribute_tree_view" />
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='create_variant']" position="replace">
+                    <field name="backend_id"/>
+                    <field name="create_variant"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="wp_odoo_product_attr_form_view" model="ir.ui.view">
+            <field name="name">product.attribute.woo.form</field>
+            <field name="model">product.attribute</field>
+            <field name="inherit_id" ref="product.product_attribute_view_form"/>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="before">
+                    <button name="sync_attribute" string="Sync" type="object" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='create_variant']" position="after">
+                    <field name="backend_id"/>
+                </xpath>
+            </field>
+        </record>
+        <!--remove in odoo v 13-->
+        <!--        <record id="wp_odoo_product_attr_value_tree_view" model="ir.ui.view">-->
+        <!--            <field name="name">product.attribute.value.woo.tree</field>-->
+        <!--            <field name="model">product.attribute.value</field>-->
+        <!--            <field name="inherit_id" ref="product.variants_tree_view" />-->
+        <!--            <field eval="7" name="priority"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//field[@name='sequence']" position="after">-->
+        <!--                    <button name="sync_attribute_value" string="Sync" type="object" class="oe_highlight"/>-->
+        <!--                </xpath>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+    </data>
+</odoo>

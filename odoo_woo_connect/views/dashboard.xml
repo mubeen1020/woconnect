@@ -1,0 +1,63 @@
+<odoo>
+    <record model="ir.actions.act_window" id="action_woocommerce_dashboard_graph">
+            <field name="name">Sales Analysis</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">graph</field>
+			<field name="view_id" ref="view_order_product_graph_woo"/>
+            <field name="context">{"search_default_backend_id":1}</field>
+	</record>
+
+    <record model="ir.actions.act_window" id="action_woocommerce_dashboard_graph_configure">
+            <field name="name">Configurations</field>
+            <field name="res_model">wordpress.configure</field>
+            <field name="view_mode">graph</field>
+			<field name="view_id" ref="odoo_woo_connect.view_wp_odoo_backend_tree"/>
+	</record>
+
+    <record model="ir.actions.act_window" id="action_woocommerce_dashboard_graph_calender">
+            <field name="name">Sales</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">calendar</field>
+			<field name="view_id" ref="sale.view_quotation_tree_with_onboarding"/>
+	</record>
+
+    <record model="ir.ui.view" id="dashboard_form_view">
+            <field name="name">dashboard.form.view</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                    <form string="Dashboard">
+                        <board style="1-1">
+                            <column>
+                                <action
+                                    string="Configurations"
+                                    name="%(odoo_woo_connect.action_woocommerce_dashboard_graph_configure)d"/>
+                                <action
+                                    string="Sales Analysis"
+                                    name="%(odoo_woo_connect.action_woocommerce_dashboard_graph)d"/>
+                            </column>
+                            <column>
+                                <action
+                                    string="Sale Orders"
+                                    name="%(odoo_woo_connect.action_woocommerce_dashboard_graph_calender)d"/>
+                            </column>
+                        </board>
+                    </form>
+            </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_woocommerce_dashboard">
+            <field name="name">WooCommerce Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+			<field name="view_id" ref="dashboard_form_view"/>
+            <field name="usage">menu</field>
+	</record>
+
+
+    <menuitem id="menu_dashboard"
+			  parent="menu_point_root"
+			  action="action_woocommerce_dashboard"
+			  name="Dashboard"
+			  sequence="1"/>
+</odoo>

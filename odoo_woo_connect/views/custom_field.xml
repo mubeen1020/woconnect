@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="form_custom" model="ir.ui.view">
+            <field name="name">res.partner.pack</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="replace">
+                    <field name="email" unique="True"/>
+                </xpath>
+            </field>
+        </record>
+        <!--       <record id="form_product" model="ir.ui.view">
+                  <field name="name">product.product.pack</field>
+                  <field name="model">product.product</field>
+                  <field name="inherit_id" ref="product.product_normal_form_view"/>
+                  <field name="priority" eval="20"/>
+                  <field name="arch" type="xml">
+                    <xpath expr="//field[@name='default_code']" position="replace">
+                      <field name="default_code" required="True" unique="True" />
+                    </xpath>
+                  </field>
+              </record> -->
+        <record id="custom_backend_field" model="ir.ui.view">
+            <field name="name">product.category.pack</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='backend_id']" position="replace">
+                    <field name="backend_id" required="True"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

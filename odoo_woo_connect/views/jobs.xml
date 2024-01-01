@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="view_wp_odoo_jobs_tree" model="ir.ui.view">
+			<field name="name">wordpress.jobs.tree</field>
+			<field name="model">wordpress.jobs</field>
+<!--			<field name="type">tree</field>-->
+			<field eval="8" name="priority"/>
+			<field name="arch" type="xml">
+<!--				<tree string="Backend" create="false" edit="false" colors="red:state == 'failed';gray:state == 'done'">-->
+				<tree string="Backend">
+					<field name="name"/>
+					<field name="backend_id"/>
+					<field name="create_date"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		<record id="view_wp_odoo_jobs_form" model="ir.ui.view">
+			<field name="name">wordpress.jobs.form</field>
+			<field name="model">wordpress.jobs</field>
+			<field name="type">form</field>
+			<field eval="9" name="priority"/>
+			<field name="arch" type="xml">
+<!--				<form string="Backend" create="false" edit="false">-->
+				<form string="Backend">
+					<!-- <header>
+						<button string="Resend" class="oe_highlight"
+							type="object" name="resend_data" attrs="{'invisible':[('state','=','done')]}" />
+					</header> -->
+					<sheet>
+						<separator colspan="4" string="Configuration"/>
+						<group>
+							<field name="name"/>
+							<field name="api_data"/>
+							<field name="create_date"/>
+							<field name="state"/>
+							<field name="request"/>
+							<field name="response"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="view_wordpress_job_search" model="ir.ui.view">
+	        <field name="name">wordpress.job.search</field>
+	        <field name="model">wordpress.jobs</field>
+	        <field name="arch" type="xml">
+	            <search string="Jobs">
+	                <field name="name"/>
+					<field name="api_data"/>
+					<field name="create_date"/>
+					<field name="state"/>
+					<field name="request"/>
+					<field name="response"/>
+
+	                <filter name="pending" string="Pending"
+	                    domain="[('state', '=', 'pending')]"/>
+	                <filter name="enqueued" string="Enqueued"
+	                    domain="[('state', '=', 'enqueued')]"/>
+	                <filter name="started" string="Started"
+	                    domain="[('state', '=', 'started')]"/>
+	                <filter name="done" string="Done"
+	                    domain="[('state', '=', 'done')]"/>
+	                <filter name="failed" string="Failed"
+	                    domain="[('state', '=', 'failed')]"/>
+	            </search>
+	        </field>
+	    </record>
+		<record id="wp_odoo_jobs_action" model="ir.actions.act_window">
+			<field name="name">Wordpress Jobs</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wordpress.jobs</field>
+<!--			<field name="view_type">form</field>-->
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{'search_default_pending': 1,
+                               'search_default_enqueued': 1,
+                               'search_default_started': 1,
+                               'search_default_failed': 1}</field>
+		</record>
+		<record id="wp_odoo_jobs_action_form" model="ir.actions.act_window.view">
+			<field name="act_window_id" ref="wp_odoo_jobs_action"/>
+			<field eval="20" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wp_odoo_jobs_form"/>
+		</record>
+		<record id="wp_odoo_jobs_action_tree" model="ir.actions.act_window.view">
+			<field name="act_window_id" ref="wp_odoo_jobs_action"/>
+			<field eval="10" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_wp_odoo_jobs_tree"/>
+		</record>
+		<menuitem groups="group_wp_odoo,group_wp_odoo_user" id="menu_point_root" name="Odoo Woocommerce Connect"/>
+		<menuitem groups="group_wp_odoo_user" id="menu_wp_odoo_id" name="Workers Logs" parent="menu_point_root" sequence="2"/>
+		<menuitem action="wp_odoo_jobs_action" groups="group_wp_odoo_user" id="wp_odoo_ids" name="Jobs" parent="menu_wp_odoo_id"/>
+	</data>
+</odoo>

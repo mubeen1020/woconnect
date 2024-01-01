@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record model="ir.ui.view" id="wp_tax_view">
+            <field name="name">account.tax.wp.form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="sync_tax" string="Sync" type="object" class="oe_highlight"/>
+                    </header>
+                </xpath>
+				<xpath expr="//notebook" position="inside">
+                    <page string="Wordpress" attrs="{'invisible':[('amount_type','=','group')]}">
+                        <group>
+                            <group>
+                                <field name="backend_id"/>
+                                <field name="state_id"/>
+                                <field name="count_id"/>
+                                <field name="postcode"/>
+                                <field name="city"/>
+                            </group>
+                            <group>
+                                <field name="priority"/>
+                                <field name="compound"/>
+                                <field name="shipping"/>
+                                <field name="order"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
