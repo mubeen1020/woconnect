@@ -383,8 +383,8 @@ class SalesOrder(models.Model):
             # sale_order_id = mapper.order_id
             #code added on 27 jun 2023
             sale_order_id = mapper.order_id
-            sale_order_id.partner_invoice_id = invoice_address_mapping.id
-            sale_order_id.partner_shipping_id = delivery_address_mapping.id
+            # sale_order_id.partner_invoice_id = invoice_address_mapping.id
+            # sale_order_id.partner_shipping_id = delivery_address_mapping.id
 
             # adding wp payment info in sale_order write method
             sale_order_id.wp_payment_method = res['data']['payment_method_title']          
@@ -480,8 +480,8 @@ class SalesOrder(models.Model):
                     values['date_order'] = date_created.replace('T', ' ')
 
                 sale_order = self.create(values)
-                sale_order.partner_invoice_id = invoice_address_mapping.id
-                sale_order.partner_shipping_id = delivery_address_mapping.id
+                # sale_order.partner_invoice_id = invoice_address_mapping.id
+                # sale_order.partner_shipping_id = delivery_address_mapping.id
 
                 # adding wp payment info in sale_order create method
                 sale_order.wp_payment_method = res['data']['payment_method_title']          
