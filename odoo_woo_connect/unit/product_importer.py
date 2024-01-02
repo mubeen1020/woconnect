@@ -69,7 +69,8 @@ class WpProductImport(WpImportExport):
         else:
             _logger.debug("api.call(%s, %s) returned %s ",
                           method, arguments, result)
-
+        print(result,"kkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
+        
         return {'status': res.status_code, 'data': result or {}}
 
     def create_product(self, backend, mapper, res, status=True):
@@ -218,29 +219,29 @@ class WpProductImport(WpImportExport):
 
             skip_image = 0
             image1 = []
-            if res['data']['images']:
-                for mult_img in res['data']['images']:
-                    if skip_image != 0:
-                        img = mult_img['src'].replace("\\", "")
-                        headers = {'User-Agent': 'Mozilla/5.0'}
-                        response = requests.get(img, headers=headers)
-                        image = Image.open(BytesIO(response.content))
-                        imgByteArr = io.BytesIO()
-                        image.save(imgByteArr, format='PNG')
-                        imgByteArr = imgByteArr.getvalue()
-                        images = base64.b64encode(imgByteArr)
+            # if res['data']['images']:
+            #     for mult_img in res['data']['images']:
+            #         if skip_image != 0:
+            #             img = mult_img['src'].replace("\\", "")
+            #             headers = {'User-Agent': 'Mozilla/5.0'}
+            #             response = requests.get(img, headers=headers)
+            #             image = Image.open(BytesIO(response.content))
+            #             imgByteArr = io.BytesIO()
+            #             image.save(imgByteArr, format='PNG')
+            #             imgByteArr = imgByteArr.getvalue()
+            #             images = base64.b64encode(imgByteArr)
 
-                        product_image = product.env['product.image'].sudo().create({
-                            'name': img,
-                            'image': images,
-                            'product_tmpl_id': product.id
-                        })
-                        product.mult_prod_id.create({
-                            'product_img_id': str(product_image.id),
-                            'woo_mult_image_id': mult_img['id'],
-                            'woo_id': res['data']['id']
-                        })
-                    skip_image = skip_image + 1
+            #             product_image = product.env['product.image'].sudo().create({
+            #                 'name': img,
+            #                 'image': images,
+            #                 'product_tmpl_id': product.id
+            #             })
+            #             product.mult_prod_id.create({
+            #                 'product_img_id': str(product_image.id),
+            #                 'woo_mult_image_id': mult_img['id'],
+            #                 'woo_id': res['data']['id']
+            #             })
+            #         skip_image = skip_image + 1
 
             # added product variant data when variations id is available
             if res['data']['variations']:
